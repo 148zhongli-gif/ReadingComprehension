@@ -1,0 +1,1730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reading Comprehension Quiz</title>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  /* GENERAL RESET */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Times New Roman', serif;
+    background: linear-gradient(180deg,#f7fbff,#eef6ff);
+    padding: 20px;
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: #222;
+  }
+
+  /* TIMER */
+  .timer {
+    position: sticky;
+    top: 0;
+    right: 20px;
+    text-align: right;
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #000;
+    z-index: 1000;
+  }
+
+  /* QUIZ CONTAINER */
+  .quiz-container {
+    max-width: 900px;
+    margin: auto;
+  }
+
+  /* CARD STYLE */
+  .card {
+    background: white;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+  }
+
+  .card:hover {
+    transform: scale(1.01);
+  }
+
+  .question {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+    cursor: pointer;
+  }
+
+  /* SUBMIT BUTTON */
+  button.submit-btn {
+    display: block;
+    width: 200px;
+    margin: 40px auto 20px auto;
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    background-color: #4a90e2;
+    cursor: pointer;
+    position: relative;
+  }
+
+  button.submit-btn:hover {
+    background-color: #357ab8;
+  }
+
+  /* RESULT POPUP */
+  #resultPopup {
+    display: none;
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.4);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+  }
+
+  .popup-content {
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    text-align:center;
+    width:90%;
+    max-width:400px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.3);
+    animation: pop 0.3s ease;
+  }
+
+  @keyframes pop {
+    from { transform: scale(0.7); opacity:0; }
+    to { transform: scale(1); opacity:1; }
+  }
+
+  /* FLASHCARD STYLE (OPTIONAL) */
+  .flashcard {
+    background: #f0f8ff;
+    border-left: 5px solid #4a90e2;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  }
+
+  /* MOBILE RESPONSIVENESS */
+  @media(max-width:600px){
+    body { padding:10px; }
+    .card, .flashcard { padding:12px; }
+    .timer { font-size:14px; }
+    button.submit-btn { width: 90%; font-size: 15px; }
+    .popup-content { padding:20px; }
+    .quiz-container { width: 100%; padding: 0 10px; }
+  }
+
+  @media(max-width:400px){
+    .timer { font-size:13px; right:10px; }
+    button.submit-btn { padding:10px; font-size:14px; }
+    h1 { font-size:18px; }
+  }
+</style>
+
+</head>
+
+<body>
+
+<h1>Reading Comprehension Quiz</h1> <div class="timer" id="timer">00:00:00.00</div>
+
+
+<div class="quiz-container">
+  <form id="quizForm">
+    <div class="card">
+<center><h2>BEGINNER</h2></center>
+<br>
+
+<!-- Story 1: The Lost Puppy -->
+
+<h3>“The Lost Puppy”</h3>
+<p>
+Mira was walking home from school when she heard a soft whimper behind a tree. Curious, she looked
+closer and saw a tiny brown puppy shaking in the cold. The puppy had no collar and looked scared, but it
+wagged its tail when it saw her.<br><br>
+Mira picked it up gently. The puppy felt light and warm in her arms. She wondered who it belonged to, and
+she decided to check the neighborhood. She knocked on several doors, but no one said they were missing
+a dog.<br><br>
+Not wanting to leave the puppy alone, Mira took it home. Her mother agreed they could care for it until
+the owner was found. Mira smiled as the puppy curled up on her lap. For the first time that day, she felt
+warmth too.
+</p>
+</div>
+<div class="card">
+  <div class="question">1. What sound did Mira hear behind the tree?</div>
+  <label><input type="radio" name="q1" value="a"> a) Loud barking</label>
+  <label><input type="radio" name="q1" value="b"> b) A soft whimper</label>
+  <label><input type="radio" name="q1" value="c"> c) Footsteps</label>
+  <label><input type="radio" name="q1" value="d"> d) A meow</label>
+</div>
+
+<div class="card">
+  <div class="question">2. Where was Mira coming from?</div>
+  <label><input type="radio" name="q2" value="a"> a) The park</label>
+  <label><input type="radio" name="q2" value="b"> b) School</label>
+  <label><input type="radio" name="q2" value="c"> c) The store</label>
+  <label><input type="radio" name="q2" value="d"> d) Her friend’s house</label>
+</div>
+
+<div class="card">
+  <div class="question">3. What color was the puppy?</div>
+  <label><input type="radio" name="q3" value="a"> a) White</label>
+  <label><input type="radio" name="q3" value="b"> b) Black</label>
+  <label><input type="radio" name="q3" value="c"> c) Brown</label>
+  <label><input type="radio" name="q3" value="d"> d) Gray</label>
+</div>
+
+<div class="card">
+  <div class="question">4. What was missing from the puppy?</div>
+  <label><input type="radio" name="q4" value="a"> a) A collar</label>
+  <label><input type="radio" name="q4" value="b"> b) A leash</label>
+  <label><input type="radio" name="q4" value="c"> c) A tag</label>
+  <label><input type="radio" name="q4" value="d"> d) A toy</label>
+</div>
+
+<div class="card">
+  <div class="question">5. What did Mira do after finding the puppy?</div>
+  <label><input type="radio" name="q5" value="a"> a) Took it directly home</label>
+  <label><input type="radio" name="q5" value="b"> b) Left it there</label>
+  <label><input type="radio" name="q5" value="c"> c) Looked for its owner</label>
+  <label><input type="radio" name="q5" value="d"> d) Called the police</label>
+</div>
+
+<div class="card">
+  <div class="question">6. How did Mira feel at the end of the story?</div>
+  <label><input type="radio" name="q6" value="a"> a) Scared</label>
+  <label><input type="radio" name="q6" value="b"> b) Angry</label>
+  <label><input type="radio" name="q6" value="c"> c) Warm and happy</label>
+  <label><input type="radio" name="q6" value="d"> d) Confused</label>
+</div>
+
+<div class="card">
+  <div class="question">7. Who agreed to care for the puppy temporarily?</div>
+  <label><input type="radio" name="q7" value="a"> a) Mira’s sister</label>
+  <label><input type="radio" name="q7" value="b"> b) Mira’s teacher</label>
+  <label><input type="radio" name="q7" value="c"> c) Mira’s mother</label>
+  <label><input type="radio" name="q7" value="d"> d) Mira’s neighbor</label>
+</div>
+
+<div class="card">
+  <div class="question">8. How did the puppy react when Mira picked it up?</div>
+  <label><input type="radio" name="q8" value="a"> a) It growled</label>
+  <label><input type="radio" name="q8" value="b"> b) It barked loudly</label>
+  <label><input type="radio" name="q8" value="c"> c) It wagged its tail</label>
+  <label><input type="radio" name="q8" value="d"> d) It ran away</label>
+</div>
+
+<div class="card">
+  <div class="question">9. Where did the puppy rest at the end?</div>
+  <label><input type="radio" name="q9" value="a"> a) In the yard</label>
+  <label><input type="radio" name="q9" value="b"> b) On Mira’s lap</label>
+  <label><input type="radio" name="q9" value="c"> c) On the floor</label>
+  <label><input type="radio" name="q9" value="d"> d) In a basket</label>
+</div>
+
+<div class="card">
+  <div class="question">10. What is the main theme?</div>
+  <label><input type="radio" name="q10" value="a"> a) Friendship with classmates</label>
+  <label><input type="radio" name="q10" value="b"> b) Helping animals in need</label>
+  <label><input type="radio" name="q10" value="c"> c) Fear of the dark</label>
+  <label><input type="radio" name="q10" value="d"> d) Getting lost</label>
+</div>
+
+<!-- Story 2: The Lost Bracelet -->
+<div class="card">
+<h3>“The Lost Bracelet”</h3>
+<p>Mira was walking home from school when she noticed her bracelet was gone. It was a small silver bracelet
+her mother gave her for her birthday. Panic grew inside her as she searched her pockets and bag, but it
+wasn’t there.<br><br>
+She quickly walked back to the school playground. She checked the swings, the slide, and even the
+garden area. Still nothing. Mira felt tears forming in her eyes.<br><br>
+Just when she was about to give up, her friend Leo called her name. He held up the silver bracelet with a
+smile. Mira ran to him and hugged him tightly, feeling relieved and happy.</p>
+</div>
+<div class="card">
+  <div class="question">11. What did Mira lose?</div>
+  <label><input type="radio" name="q11" value="a"> a) Necklace</label>
+  <label><input type="radio" name="q11" value="b"> b) Bracelet</label>
+  <label><input type="radio" name="q11" value="c"> c) Phone</label>
+  <label><input type="radio" name="q11" value="d"> d) Book</label>
+</div>
+
+<div class="card">
+  <div class="question">12. Who gave her the bracelet?</div>
+  <label><input type="radio" name="q12" value="a"> a) Father</label>
+  <label><input type="radio" name="q12" value="b"> b) Sister</label>
+  <label><input type="radio" name="q12" value="c"> c) Mother</label>
+  <label><input type="radio" name="q12" value="d"> d) Teacher</label>
+</div>
+
+<div class="card">
+  <div class="question">13. Where did she return to search?</div>
+  <label><input type="radio" name="q13" value="a"> a) Mall</label>
+  <label><input type="radio" name="q13" value="b"> b) Playground</label>
+  <label><input type="radio" name="q13" value="c"> c) Street</label>
+  <label><input type="radio" name="q13" value="d"> d) Library</label>
+</div>
+
+<div class="card">
+  <div class="question">14. What emotion did she feel while searching?</div>
+  <label><input type="radio" name="q14" value="a"> a) Angry</label>
+  <label><input type="radio" name="q14" value="b"> b) Excited</label>
+  <label><input type="radio" name="q14" value="c"> c) Panicked</label>
+  <label><input type="radio" name="q14" value="d"> d) Sleepy</label>
+</div>
+
+<div class="card">
+  <div class="question">15. Who found the bracelet?</div>
+  <label><input type="radio" name="q15" value="a"> a) Mira</label>
+  <label><input type="radio" name="q15" value="b"> b) Leo</label>
+  <label><input type="radio" name="q15" value="c"> c) Teacher</label>
+  <label><input type="radio" name="q15" value="d"> d) Stranger</label>
+</div>
+
+<div class="card">
+  <div class="question">16. What did Leo hold up?</div>
+  <label><input type="radio" name="q16" value="a"> a) A ball</label>
+  <label><input type="radio" name="q16" value="b"> b) A key</label>
+  <label><input type="radio" name="q16" value="c"> c) The bracelet</label>
+  <label><input type="radio" name="q16" value="d"> d) A letter</label>
+</div>
+
+<div class="card">
+  <div class="question">17. Mira almost started to:</div>
+  <label><input type="radio" name="q17" value="a"> a) Laugh</label>
+  <label><input type="radio" name="q17" value="b"> b) Dance</label>
+  <label><input type="radio" name="q17" value="c"> c) Cry</label>
+  <label><input type="radio" name="q17" value="d"> d) Shout</label>
+</div>
+
+<div class="card">
+  <div class="question">18. Where did she search in the playground?</div>
+  <label><input type="radio" name="q18" value="a"> a) Garden, swings, slide</label>
+  <label><input type="radio" name="q18" value="b"> b) Only garden</label>
+  <label><input type="radio" name="q18" value="c"> c) Only swings</label>
+  <label><input type="radio" name="q18" value="d"> d) Only slide</label>
+</div>
+
+<div class="card">
+  <div class="question">19. How did Mira feel when she got the bracelet?</div>
+  <label><input type="radio" name="q19" value="a"> a) Happy</label>
+  <label><input type="radio" name="q19" value="b"> b) Angry</label>
+  <label><input type="radio" name="q19" value="c"> c) Sad</label>
+  <label><input type="radio" name="q19" value="d"> d) Confused</label>
+</div>
+
+<div class="card">
+  <div class="question">20. The bracelet was made of:</div>
+  <label><input type="radio" name="q20" value="a"> a) Gold</label>
+  <label><input type="radio" name="q20" value="b"> b) Silver</label>
+  <label><input type="radio" name="q20" value="c"> c) Bronze</label>
+  <label><input type="radio" name="q20" value="d"> d) Copper</label>
+</div>
+
+<!-- Story 3: The New Puppy -->
+<div class="card">
+<h3>“The New Puppy”</h3>
+<p>
+Sam’s family adopted a small brown puppy from the shelter. Sam named him Coco. On the first day, Coco
+followed Sam everywhere—even to the bathroom! Sam laughed because the puppy was so curious.<br><br>
+Coco loved exploring the house. He sniffed every corner, chewed on Sam’s slippers, and even barked at
+his own reflection in the mirror. Sam found him silly but adorable.<br><br>
+At night, Coco didn’t want to sleep alone. He whined softly until Sam placed a blanket beside his bed.
+Coco curled up and fell asleep immediately. Sam smiled, happy to have a new best friend.
+</p>
+</div>
+<div class="card">
+  <div class="question">21. What did Sam’s family adopt?</div>
+  <label><input type="radio" name="q21" value="a"> a) Cat</label>
+  <label><input type="radio" name="q21" value="b"> b) Puppy</label>
+  <label><input type="radio" name="q21" value="c"> c) Bird</label>
+  <label><input type="radio" name="q21" value="d"> d) Rabbit</label>
+</div>
+
+<div class="card">
+  <div class="question">22. What was the puppy’s name?</div>
+  <label><input type="radio" name="q22" value="a"> a) Milo</label>
+  <label><input type="radio" name="q22" value="b"> b) Coco</label>
+  <label><input type="radio" name="q22" value="c"> c) Benny</label>
+  <label><input type="radio" name="q22" value="d"> d) Toby</label>
+</div>
+
+<div class="card">
+  <div class="question">23. Where did Coco come from?</div>
+  <label><input type="radio" name="q23" value="a"> a) A farm</label>
+  <label><input type="radio" name="q23" value="b"> b) A mall</label>
+  <label><input type="radio" name="q23" value="c"> c) A shelter</label>
+  <label><input type="radio" name="q23" value="d"> d) A friend</label>
+</div>
+
+<div class="card">
+  <div class="question">24. Coco barked at his own:</div>
+  <label><input type="radio" name="q24" value="a"> a) Bowl</label>
+  <label><input type="radio" name="q24" value="b"> b) Reflection</label>
+  <label><input type="radio" name="q24" value="c"> c) Shadow</label>
+  <label><input type="radio" name="q24" value="d"> d) Bone</label>
+</div>
+
+<div class="card">
+  <div class="question">25. What did he chew on?</div>
+  <label><input type="radio" name="q25" value="a"> a) Shoes</label>
+  <label><input type="radio" name="q25" value="b"> b) Table</label>
+  <label><input type="radio" name="q25" value="c"> c) Slippers</label>
+  <label><input type="radio" name="q25" value="d"> d) Carpet</label>
+</div>
+
+<div class="card">
+  <div class="question">26. Why did he whine at night?</div>
+  <label><input type="radio" name="q26" value="a"> a) He was hungry</label>
+  <label><input type="radio" name="q26" value="b"> b) He wanted Sam</label>
+  <label><input type="radio" name="q26" value="c"> c) He was angry</label>
+  <label><input type="radio" name="q26" value="d"> d) He was sick</label>
+</div>
+
+<div class="card">
+  <div class="question">27. What helped Coco sleep?</div>
+  <label><input type="radio" name="q27" value="a"> a) Music</label>
+  <label><input type="radio" name="q27" value="b"> b) A blanket</label>
+  <label><input type="radio" name="q27" value="c"> c) A toy</label>
+  <label><input type="radio" name="q27" value="d"> d) Food</label>
+</div>
+
+<div class="card">
+  <div class="question">28. Sam felt Coco was:</div>
+  <label><input type="radio" name="q28" value="a"> a) Scary</label>
+  <label><input type="radio" name="q28" value="b"> b) Annoying</label>
+  <label><input type="radio" name="q28" value="c"> c) Adorable</label>
+  <label><input type="radio" name="q28" value="d"> d) Dangerous</label>
+</div>
+
+<div class="card">
+  <div class="question">29. Coco explored the:</div>
+  <label><input type="radio" name="q29" value="a"> a) Yard</label>
+  <label><input type="radio" name="q29" value="b"> b) House</label>
+  <label><input type="radio" name="q29" value="c"> c) Park</label>
+  <label><input type="radio" name="q29" value="d"> d) Basement</label>
+</div>
+
+<div class="card">
+  <div class="question">30. What emotion ends the story?</div>
+  <label><input type="radio" name="q30" value="a"> a) Anger</label>
+  <label><input type="radio" name="q30" value="b"> b) Sadness</label>
+  <label><input type="radio" name="q30" value="c"> c) Happiness</label>
+  <label><input type="radio" name="q30" value="d"> d) Fear</label>
+</div>
+
+<!-- Story 4: A Rainy Surprise -->
+<div class="card">
+<h3>“A Rainy Surprise”</h3>
+<p>
+It rained heavily after school, and Anna forgot her umbrella. She stood under the school roof, waiting for
+the rain to stop, but it didn’t. The wind grew stronger, and she felt cold.<br><br>
+Suddenly, her brother Mark appeared holding a big blue umbrella. “Mom sent me,” he said. Anna felt
+relieved. They walked home together, sharing the umbrella and laughing about how messy her hair
+looked.<br><br>
+When they arrived home, their mother handed them warm chocolate milk. Anna smiled, grateful for her
+family’s love on a cold, rainy day.
+</p>
+</div>
+<div class="card">
+  <div class="question">31. What did Anna forget?</div>
+  <label><input type="radio" name="q31" value="a"> a) Bag</label>
+  <label><input type="radio" name="q31" value="b"> b) Umbrella</label>
+  <label><input type="radio" name="q31" value="c"> c) Shoes</label>
+  <label><input type="radio" name="q31" value="d"> d) Jacket</label>
+</div>
+
+<div class="card">
+  <div class="question">32. Who came to get her?</div>
+  <label><input type="radio" name="q32" value="a"> a) Father</label>
+  <label><input type="radio" name="q32" value="b"> b) Teacher</label>
+  <label><input type="radio" name="q32" value="c"> c) Brother</label>
+  <label><input type="radio" name="q32" value="d"> d) Friend</label>
+</div>
+
+<div class="card">
+  <div class="question">33. What color was the umbrella?</div>
+  <label><input type="radio" name="q33" value="a"> a) Red</label>
+  <label><input type="radio" name="q33" value="b"> b) Yellow</label>
+  <label><input type="radio" name="q33" value="c"> c) Blue</label>
+  <label><input type="radio" name="q33" value="d"> d) Green</label>
+</div>
+
+<div class="card">
+  <div class="question">34. What was the weather like?</div>
+  <label><input type="radio" name="q34" value="a"> a) Sunny</label>
+  <label><input type="radio" name="q34" value="b"> b) Windy and rainy</label>
+  <label><input type="radio" name="q34" value="c"> c) Hot</label>
+  <label><input type="radio" name="q34" value="d"> d) Dry</label>
+</div>
+
+<div class="card">
+  <div class="question">35. How did Anna feel when she saw Mark?</div>
+  <label><input type="radio" name="q35" value="a"> a) Angry</label>
+  <label><input type="radio" name="q35" value="b"> b) Relieved</label>
+  <label><input type="radio" name="q35" value="c"> c) Bored</label>
+  <label><input type="radio" name="q35" value="d"> d) Scared</label>
+</div>
+
+<div class="card">
+  <div class="question">36. What did they share?</div>
+  <label><input type="radio" name="q36" value="a"> a) A jacket</label>
+  <label><input type="radio" name="q36" value="b"> b) An umbrella</label>
+  <label><input type="radio" name="q36" value="c"> c) A snack</label>
+  <label><input type="radio" name="q36" value="d"> d) A book</label>
+</div>
+
+<div class="card">
+  <div class="question">37. What drink did their mom give?</div>
+  <label><input type="radio" name="q37" value="a"> a) Tea</label>
+  <label><input type="radio" name="q37" value="b"> b) Coffee</label>
+  <label><input type="radio" name="q37" value="c"> c) Chocolate milk</label>
+  <label><input type="radio" name="q37" value="d"> d) Juice</label>
+</div>
+
+<div class="card">
+  <div class="question">38. What did they laugh about?</div>
+  <label><input type="radio" name="q38" value="a"> a) Anna’s messy hair</label>
+  <label><input type="radio" name="q38" value="b"> b) Mark’s shoes</label>
+  <label><input type="radio" name="q38" value="c"> c) The teacher</label>
+  <label><input type="radio" name="q38" value="d"> d) The rain</label>
+</div>
+
+<div class="card">
+  <div class="question">39. Where was Anna standing?</div>
+  <label><input type="radio" name="q39" value="a"> a) Field</label>
+  <label><input type="radio" name="q39" value="b"> b) Roof</label>
+  <label><input type="radio" name="q39" value="c"> c) Under the school roof</label>
+  <label><input type="radio" name="q39" value="d"> d) Street</label>
+</div>
+
+<div class="card">
+  <div class="question">40. How did the story end?</div>
+  <label><input type="radio" name="q40" value="a"> a) With sadness</label>
+  <label><input type="radio" name="q40" value="b"> b) With a gift</label>
+  <label><input type="radio" name="q40" value="c"> c) With warmth and love</label>
+  <label><input type="radio" name="q40" value="d"> d) With a fight</label>
+</div>
+
+<!-- Story 5: The Missing Homework -->
+<div class="card">
+<h3>“The Missing Homework”</h3>
+<p>
+Liam searched his entire room for his homework. He checked under the bed, inside his drawers, and even
+in his shoes. Still, he couldn’t find it.<br><br>
+He sat on the floor, confused, until he remembered something: he had done his homework in the living
+room last night. Liam rushed downstairs and checked the table. There it was—exactly where he left it.<br><br>
+He picked it up and sighed in relief. “I really need to be more careful,” he said to himself, placing it neatly
+inside his school folder.
+</p>
+</div>
+<div class="card">
+  <div class="question">41. What was Liam looking for?</div>
+  <label><input type="radio" name="q41" value="a"> a) Money</label>
+  <label><input type="radio" name="q41" value="b"> b) Homework</label>
+  <label><input type="radio" name="q41" value="c"> c) Keys</label>
+  <label><input type="radio" name="q41" value="d"> d) Socks</label>
+</div>
+
+<div class="card">
+  <div class="question">42. Where did he NOT look?</div>
+  <label><input type="radio" name="q42" value="a"> a) Under bed</label>
+  <label><input type="radio" name="q42" value="b"> b) Shoes</label>
+  <label><input type="radio" name="q42" value="c"> c) Drawers</label>
+  <label><input type="radio" name="q42" value="d"> d) School</label>
+</div>
+
+<div class="card">
+  <div class="question">43. Where did he actually leave it?</div>
+  <label><input type="radio" name="q43" value="a"> a) Kitchen</label>
+  <label><input type="radio" name="q43" value="b"> b) Backyard</label>
+  <label><input type="radio" name="q43" value="c"> c) Living room</label>
+  <label><input type="radio" name="q43" value="d"> d) Bedroom</label>
+</div>
+
+<div class="card">
+  <div class="question">44. What did he feel when he found it?</div>
+  <label><input type="radio" name="q44" value="a"> a) Angry</label>
+  <label><input type="radio" name="q44" value="b"> b) Relieved</label>
+  <label><input type="radio" name="q44" value="c"> c) Sad</label>
+  <label><input type="radio" name="q44" value="d"> d) Nervous</label>
+</div>
+
+<div class="card">
+  <div class="question">45. What did he decide he needed to be?</div>
+  <label><input type="radio" name="q45" value="a"> a) Faster</label>
+  <label><input type="radio" name="q45" value="b"> b) Kinder</label>
+  <label><input type="radio" name="q45" value="c"> c) More careful</label>
+  <label><input type="radio" name="q45" value="d"> d) Quieter</label>
+</div>
+
+<div class="card">
+  <div class="question">46. What furniture did he check?</div>
+  <label><input type="radio" name="q46" value="a"> a) Chair</label>
+  <label><input type="radio" name="q46" value="b"> b) Table</label>
+  <label><input type="radio" name="q46" value="c"> c) Couch</label>
+  <label><input type="radio" name="q46" value="d"> d) Shelf</label>
+</div>
+
+<div class="card">
+  <div class="question">47. Where did he sit while confused?</div>
+  <label><input type="radio" name="q47" value="a"> a) Floor</label>
+  <label><input type="radio" name="q47" value="b"> b) Bed</label>
+  <label><input type="radio" name="q47" value="c"> c) Chair</label>
+  <label><input type="radio" name="q47" value="d"> d) Desk</label>
+</div>
+
+<div class="card">
+  <div class="question">48. What did he put the homework into?</div>
+  <label><input type="radio" name="q48" value="a"> a) Envelope</label>
+  <label><input type="radio" name="q48" value="b"> b) Bag</label>
+  <label><input type="radio" name="q48" value="c"> c) Folder</label>
+  <label><input type="radio" name="q48" value="d"> d) Drawer</label>
+</div>
+
+<div class="card">
+  <div class="question">49. When did he do the homework?</div>
+  <label><input type="radio" name="q49" value="a"> a) Yesterday morning</label>
+  <label><input type="radio" name="q49" value="b"> b) Last night</label>
+  <label><input type="radio" name="q49" value="c"> c) Today</label>
+  <label><input type="radio" name="q49" value="d"> d) Before lunch</label>
+</div>
+
+<div class="card">
+  <div class="question">50. What kind of task was it?</div>
+  <label><input type="radio" name="q50" value="a"> a) Chore</label>
+  <label><input type="radio" name="q50" value="b"> b) Homework</label>
+  <label><input type="radio" name="q50" value="c"> c) Project</label>
+  <label><input type="radio" name="q50" value="d"> d) Test</label>
+</div>
+<!-- Story 6: The Broken Umbrella -->
+<div class="card">
+<center><h2>INTERMIDIATE</h2></center>
+<h3>“The Broken Umbrella”</h3>
+<p>
+It was a stormy afternoon when Leo realized his umbrella had snapped in half. The wind was too strong,
+and raindrops hit his face like small needles. He stood under a small awning, wondering how he would
+make it home without getting completely soaked.<br><br>
+As he waited, a girl from his class approached him. She had a large umbrella and a calm smile. Without
+saying much, she stepped closer and held her umbrella wide enough for both of them. Leo felt awkward
+at first, but the warmth of her kindness made him relax.<br><br>
+They walked together through the rain, talking about music, school, and little things that made them
+laugh. When they reached Leo’s street, he thanked her sincerely. The girl waved goodbye, and for the first
+time that day, Leo felt the storm wasn’t so bad after all.
+</p>
+</div>
+<div class="card">
+  <div class="question">51. What was the weather like?</div>
+  <label><input type="radio" name="q51" value="a"> a) Sunny</label>
+  <label><input type="radio" name="q51" value="b"> b) Snowy</label>
+  <label><input type="radio" name="q51" value="c"> c) Stormy and rainy</label>
+  <label><input type="radio" name="q51" value="d"> d) Windy but dry</label>
+</div>
+
+<div class="card">
+  <div class="question">52. Why couldn’t Leo use his umbrella?</div>
+  <label><input type="radio" name="q52" value="a"> a) He forgot it</label>
+  <label><input type="radio" name="q52" value="b"> b) It broke</label>
+  <label><input type="radio" name="q52" value="c"> c) Someone took it</label>
+  <label><input type="radio" name="q52" value="d"> d) It was too heavy</label>
+</div>
+
+<div class="card">
+  <div class="question">53. Where did Leo stand to avoid the rain?</div>
+  <label><input type="radio" name="q53" value="a"> a) Under a tree</label>
+  <label><input type="radio" name="q53" value="b"> b) Inside a store</label>
+  <label><input type="radio" name="q53" value="c"> c) Under a small awning</label>
+  <label><input type="radio" name="q53" value="d"> d) In the bus stop</label>
+</div>
+
+<div class="card">
+  <div class="question">54. Who approached Leo?</div>
+  <label><input type="radio" name="q54" value="a"> a) His cousin</label>
+  <label><input type="radio" name="q54" value="b"> b) A stranger</label>
+  <label><input type="radio" name="q54" value="c"> c) A girl from his class</label>
+  <label><input type="radio" name="q54" value="d"> d) His teacher</label>
+</div>
+
+<div class="card">
+  <div class="question">55. What did the girl share with Leo?</div>
+  <label><input type="radio" name="q55" value="a"> a) Her jacket</label>
+  <label><input type="radio" name="q55" value="b"> b) Her umbrella</label>
+  <label><input type="radio" name="q55" value="c"> c) Her shoes</label>
+  <label><input type="radio" name="q55" value="d"> d) Her bag</label>
+</div>
+
+<div class="card">
+  <div class="question">56. How did Leo feel at first?</div>
+  <label><input type="radio" name="q56" value="a"> a) Angry</label>
+  <label><input type="radio" name="q56" value="b"> b) Awkward</label>
+  <label><input type="radio" name="q56" value="c"> c) Sleepy</label>
+  <label><input type="radio" name="q56" value="d"> d) Excited</label>
+</div>
+
+<div class="card">
+  <div class="question">57. What did the two talk about?</div>
+  <label><input type="radio" name="q57" value="a"> a) School and music</label>
+  <label><input type="radio" name="q57" value="b"> b) Movies</label>
+  <label><input type="radio" name="q57" value="c"> c) Sports</label>
+  <label><input type="radio" name="q57" value="d"> d) Homework only</label>
+</div>
+
+<div class="card">
+  <div class="question">58. How did the storm feel at the end?</div>
+  <label><input type="radio" name="q58" value="a"> a) Worse</label>
+  <label><input type="radio" name="q58" value="b"> b) The same</label>
+  <label><input type="radio" name="q58" value="c"> c) Less scary</label>
+  <label><input type="radio" name="q58" value="d"> d) Not so bad</label>
+</div>
+
+<div class="card">
+  <div class="question">59. What did Leo do when they reached his street?</div>
+  <label><input type="radio" name="q59" value="a"> a) He ran inside</label>
+  <label><input type="radio" name="q59" value="b"> b) He ignored her</label>
+  <label><input type="radio" name="q59" value="c"> c) He thanked her</label>
+  <label><input type="radio" name="q59" value="d"> d) He gave her his umbrella</label>
+</div>
+
+<div class="card">
+  <div class="question">60. What is the lesson?</div>
+  <label><input type="radio" name="q60" value="a"> a) Don’t go outside in storms</label>
+  <label><input type="radio" name="q60" value="b"> b) Kindness can brighten a bad day</label>
+  <label><input type="radio" name="q60" value="c"> c) Always carry two umbrellas</label>
+  <label><input type="radio" name="q60" value="d"> d) People don’t help each other</label>
+</div>
+<!-- Questions 61-70: The Forgotten Painting -->
+<div class="card">
+<h3>The Forgotten Painting</h3>
+<p>
+Ella enjoyed visiting her grandmother’s attic because it was filled with old boxes and mysterious objects.
+One afternoon, she discovered a dusty painting hidden behind a stack of books. The woman in the
+painting looked familiar, almost like someone she knew.<br><br>
+Curious, Ella brought the painting downstairs. Her grandmother’s eyes widened the moment she saw it.
+She explained that the woman in the painting was Ella’s great-grandmother, a talented artist who
+disappeared during a storm many years ago.<br><br>
+Ella felt a strange warmth, as if the painting was calling out to her. She decided to learn more about her
+great-grandmother’s life and promised herself she would protect the painting from being forgotten again.
+</p>
+</div>
+<div class="card">
+<p>61. Where did Ella find the painting?</p>
+<label><input type="radio" name="q61" value="a"> a) Basement</label>
+<label><input type="radio" name="q61" value="b"> b) Attic</label>
+<label><input type="radio" name="q61" value="c"> c) Garage</label>
+<label><input type="radio" name="q61" value="d"> d) Closet</label>
+</div>
+
+<div class="card">
+<p>62. The painting was hidden behind:</p>
+<label><input type="radio" name="q62" value="a"> a) Chairs</label>
+<label><input type="radio" name="q62" value="b"> b) A mirror</label>
+<label><input type="radio" name="q62" value="c"> c) Books</label>
+<label><input type="radio" name="q62" value="d"> d) Clothes</label>
+</div>
+
+<div class="card">
+<p>63. Who recognized the woman in the painting?</p>
+<label><input type="radio" name="q63" value="a"> a) Ella</label>
+<label><input type="radio" name="q63" value="b"> b) Her grandmother</label>
+<label><input type="radio" name="q63" value="c"> c) Her father</label>
+<label><input type="radio" name="q63" value="d"> d) A neighbor</label>
+</div>
+
+<div class="card">
+<p>64. The woman was Ella’s:</p>
+<label><input type="radio" name="q64" value="a"> a) Aunt</label>
+<label><input type="radio" name="q64" value="b"> b) Cousin</label>
+<label><input type="radio" name="q64" value="c"> c) Great-grandmother</label>
+<label><input type="radio" name="q64" value="d"> d) Sister</label>
+</div>
+
+<div class="card">
+<p>65. What happened to the artist long ago?</p>
+<label><input type="radio" name="q65" value="a"> a) She moved away</label>
+<label><input type="radio" name="q65" value="b"> b) She became famous</label>
+<label><input type="radio" name="q65" value="c"> c) She disappeared in a storm</label>
+<label><input type="radio" name="q65" value="d"> d) She lost her memory</label>
+</div>
+
+<div class="card">
+<p>66. How did Ella feel toward the painting?</p>
+<label><input type="radio" name="q66" value="a"> a) Afraid</label>
+<label><input type="radio" name="q66" value="b"> b) Annoyed</label>
+<label><input type="radio" name="q66" value="c"> c) Connected</label>
+<label><input type="radio" name="q66" value="d"> d) Bored</label>
+</div>
+
+<div class="card">
+<p>67. What did Ella decide to do?</p>
+<label><input type="radio" name="q67" value="a"> a) Sell it</label>
+<label><input type="radio" name="q67" value="b"> b) Throw it away</label>
+<label><input type="radio" name="q67" value="c"> c) Learn more about the woman</label>
+<label><input type="radio" name="q67" value="d"> d) Hide it again</label>
+</div>
+
+<div class="card">
+<p>68. The attic was full of:</p>
+<label><input type="radio" name="q68" value="a"> a) Food</label>
+<label><input type="radio" name="q68" value="b"> b) Toys</label>
+<label><input type="radio" name="q68" value="c"> c) Boxes and objects</label>
+<label><input type="radio" name="q68" value="d"> d) Clothes</label>
+</div>
+
+<div class="card">
+<p>69. The painting was described as:</p>
+<label><input type="radio" name="q69" value="a"> a) New</label>
+<label><input type="radio" name="q69" value="b"> b) Broken</label>
+<label><input type="radio" name="q69" value="c"> c) Dusty</label>
+<label><input type="radio" name="q69" value="d"> d) Colorless</label>
+</div>
+
+<div class="card">
+<p>70. Ella promised to:</p>
+<label><input type="radio" name="q70" value="a"> a) Protect it</label>
+<label><input type="radio" name="q70" value="b"> b) Repaint it</label>
+<label><input type="radio" name="q70" value="c"> c) Return it</label>
+<label><input type="radio" name="q70" value="d"> d) Burn it</label>
+
+</div>
+
+
+<div class="card">
+  <h3>The Silent Contestant</h3>
+  <p>
+    Every year, the school held a storytelling competition. This year, everyone expected loud, dramatic
+    performances—except from Miles. He was quiet, shy, and always avoided speaking in front of crowds.
+    Still, his teacher encouraged him to join.<br><br>
+  
+    When his turn came, Miles stepped onto the stage with trembling hands. Instead of acting loudly like the
+    other contestants, he read a simple story he wrote about a lonely star searching for its place in the sky.
+    His voice was soft but steady. The entire room fell silent, listening closely.<br><br>
+
+    To everyone’s surprise, Miles won first place. His story touched the judges’ hearts, not because it was
+    loud or full of action, but because it was honest and meaningful—just like him.
+  </p>
+  </div>
+
+  <!-- Cards -->
+  <div class="cards">
+
+    <!-- Question 71 -->
+    <div class="card">
+      <div class="front">71. What event did the school hold?</div>
+      <div class="back">
+        <label><input type="radio" name="q71" value="a"> a) Singing contest</label><br>
+        <label><input type="radio" name="q71" value="b"> b) Storytelling competition</label><br>
+        <label><input type="radio" name="q71" value="c"> c) Debate</label><br>
+        <label><input type="radio" name="q71" value="d"> d) Spelling bee</label>
+      </div>
+    </div>
+
+    <!-- Question 72 -->
+    <div class="card">
+      <div class="front">72. Miles was known for being:</div>
+      <div class="back">
+        <label><input type="radio" name="q72" value="a"> a) Loud</label><br>
+        <label><input type="radio" name="q72" value="b"> b) Competitive</label><br>
+        <label><input type="radio" name="q72" value="c"> c) Shy</label><br>
+        <label><input type="radio" name="q72" value="d"> d) Funny</label>
+      </div>
+    </div>
+
+    <!-- Question 73 -->
+    <div class="card">
+      <div class="front">73. Who encouraged him to join?</div>
+      <div class="back">
+        <label><input type="radio" name="q73" value="a"> a) Friends</label><br>
+        <label><input type="radio" name="q73" value="b"> b) Teacher</label><br>
+        <label><input type="radio" name="q73" value="c"> c) Cousin</label><br>
+        <label><input type="radio" name="q73" value="d"> d) Principal</label>
+      </div>
+    </div>
+
+    <!-- Question 74 -->
+    <div class="card">
+      <div class="front">74. What did Miles read?</div>
+      <div class="back">
+        <label><input type="radio" name="q74" value="a"> a) A poem</label><br>
+        <label><input type="radio" name="q74" value="b"> b) A letter</label><br>
+        <label><input type="radio" name="q74" value="c"> c) A story he wrote</label><br>
+        <label><input type="radio" name="q74" value="d"> d) A news article</label>
+      </div>
+    </div>
+
+    <!-- Question 75 -->
+    <div class="card">
+      <div class="front">75. His hands were:</div>
+      <div class="back">
+        <label><input type="radio" name="q75" value="a"> a) Cold</label><br>
+        <label><input type="radio" name="q75" value="b"> b) Trembling</label><br>
+        <label><input type="radio" name="q75" value="c"> c) Dirty</label><br>
+        <label><input type="radio" name="q75" value="d"> d) Broken</label>
+      </div>
+    </div>
+
+    <!-- Question 76 -->
+    <div class="card">
+      <div class="front">76. The audience reacted by:</div>
+      <div class="back">
+        <label><input type="radio" name="q76" value="a"> a) Laughing</label><br>
+        <label><input type="radio" name="q76" value="b"> b) Talking loudly</label><br>
+        <label><input type="radio" name="q76" value="c"> c) Leaving</label><br>
+        <label><input type="radio" name="q76" value="d"> d) Becoming silent</label>
+      </div>
+    </div>
+
+    <!-- Question 77 -->
+    <div class="card">
+      <div class="front">77. What was the story about?</div>
+      <div class="back">
+        <label><input type="radio" name="q77" value="a"> a) A girl in a forest</label><br>
+        <label><input type="radio" name="q77" value="b"> b) A lonely star</label><br>
+        <label><input type="radio" name="q77" value="c"> c) A lost puppy</label><br>
+        <label><input type="radio" name="q77" value="d"> d) A magic book</label>
+      </div>
+    </div>
+
+    <!-- Question 78 -->
+    <div class="card">
+      <div class="front">78. What place did Miles win?</div>
+      <div class="back">
+        <label><input type="radio" name="q78" value="a"> a) First</label><br>
+        <label><input type="radio" name="q78" value="b"> b) Second</label><br>
+        <label><input type="radio" name="q78" value="c"> c) Third</label><br>
+        <label><input type="radio" name="q78" value="d"> d) None</label>
+      </div>
+    </div>
+
+    <!-- Question 79 -->
+    <div class="card">
+      <div class="front">79. Why did he win?</div>
+      <div class="back">
+        <label><input type="radio" name="q79" value="a"> a) He was funny</label><br>
+        <label><input type="radio" name="q79" value="b"> b) His story was honest</label><br>
+        <label><input type="radio" name="q79" value="c"> c) He shouted loudly</label><br>
+        <label><input type="radio" name="q79" value="d"> d) His friends helped</label>
+      </div>
+    </div>
+
+    <!-- Question 80 -->
+    <div class="card">
+      <div class="front">80. The story reflected Miles’s personality as:</div>
+      <div class="back">
+        <label><input type="radio" name="q80" value="a"> a) Angry</label><br>
+        <label><input type="radio" name="q80" value="b"> b) Dishonest</label><br>
+        <label><input type="radio" name="q80" value="c"> c) Shy but sincere</label><br>
+        <label><input type="radio" name="q80" value="d"> d) Lazy</label>
+      </div>
+    </div>
+    <div class="card">
+  
+    <strong>The Night Market Lantern</strong><br><br>
+    During a school trip, Mara and her classmates visited a famous night market filled with colorful stalls. She spotted a vendor selling handcrafted lanterns made from thin bamboo and soft paper. One lantern glowed brighter than the rest, painted with gold and blue patterns.<br><br>
+    The vendor told Mara that this lantern symbolized courage. “Whoever carries it,” he said, “finds the strength to face something they fear.” Mara hesitated, but something inside her urged her to buy it.<br><br>
+    Later that night, when the class had to perform a dance onstage, Mara felt scared. She held the lantern tightly, imagining its light surrounding her. To her surprise, the fear slowly faded, and she stepped onstage confidently, performing better than she ever had before.
+  </div>
+</div>
+
+<div class="card">
+ <div class="question">
+    81. Where did the class go?
+  </div>
+  <label><input type="radio" name="q81" value="a"> a) Zoo</label>
+  <label><input type="radio" name="q81" value="b"> b) Night market</label>
+  <label><input type="radio" name="q81" value="c"> c) Beach</label>
+  <label><input type="radio" name="q81" value="d"> d) Museum</label>
+</div>
+
+<div class="card">
+   <div class="question">
+    82. What caught Mara’s attention?
+  </div>
+  <label><input type="radio" name="q82" value="a"> a) Food</label>
+  <label><input type="radio" name="q82" value="b"> b) Lanterns</label>
+  <label><input type="radio" name="q82" value="c"> c) Clothes</label>
+  <label><input type="radio" name="q82" value="d"> d) Books</label>
+</div>
+
+<div class="card">
+  <div class="question">
+    83. What were the lanterns made of?
+  </div>
+  <label><input type="radio" name="q83" value="a"> a) Wood and glass</label>
+  <label><input type="radio" name="q83" value="b"> b) Metal and plastic</label>
+  <label><input type="radio" name="q83" value="c"> c) Bamboo and paper</label>
+  <label><input type="radio" name="q83" value="d"> d) Clay and silk</label>
+</div>
+
+<div class="card">
+  <div class="question">
+    84. The special lantern symbolized:
+  </div>
+  <label><input type="radio" name="q84" value="a"> a) Happiness</label>
+  <label><input type="radio" name="q84" value="b"> b) Strength</label>
+  <label><input type="radio" name="q84" value="c"> c) Courage</label>
+  <label><input type="radio" name="q84" value="d"> d) Luck</label>
+</div>
+
+<div class="card">
+  <div class="question">
+    85. Why did Mara buy it?
+  </div>
+  <label><input type="radio" name="q85" value="a"> a) Her teacher told her</label>
+  <label><input type="radio" name="q85" value="b"> b) She was forced</label>
+  <label><input type="radio" name="q85" value="c"> c) Something inside her pushed her</label>
+  <label><input type="radio" name="q85" value="d"> d) Her friends bought one</label>
+</div>
+
+<div class="card">
+  <div class="question">
+    86. What event scared her?
+  </div>
+  <label><input type="radio" name="q86" value="a"> a) Painting contest</label>
+  <label><input type="radio" name="q86" value="b"> b) Dance performance</label>
+  <label><input type="radio" name="q86" value="c"> c) Examination</label>
+  <label><input type="radio" name="q86" value="d"> d) Debate</label>
+</div>
+
+<div class="card">
+  <div class="question">
+    87. How did the lantern make her feel?
+  </div>
+  <label><input type="radio" name="q87" value="a"> a) Sleepy</label>
+  <label><input type="radio" name="q87" value="b"> b) More afraid</label>
+  <label><input type="radio" name="q87" value="c"> c) Comforted</label>
+  <label><input type="radio" name="q87" value="d"> d) Angry</label>
+</div>
+
+<div class="card">
+  <div class="question">
+    88. What happened to her fear?
+  </div>
+  <label><input type="radio" name="q88" value="a"> a) It increased</label>
+  <label><input type="radio" name="q88" value="b"> b) It stayed the same</label>
+  <label><input type="radio" name="q88" value="c"> c) It faded</label>
+  <label><input type="radio" name="q88" value="d"> d) It turned into anger</label>
+</div>
+
+<div class="card">
+  <div class="question">
+    89. How did she perform?
+  </div>
+  <label><input type="radio" name="q89" value="a"> a) Badly</label>
+  <label><input type="radio" name="q89" value="b"> b) Better than ever</label>
+  <label><input type="radio" name="q89" value="c"> c) Slowly</label>
+  <label><input type="radio" name="q89" value="d"> d) She didn’t perform</label>
+</div>
+
+<div class="card">
+  <div class="question">
+    90. What colors decorated the lantern?
+  </div>
+  <label><input type="radio" name="q90" value="a"> a) Red & white</label>
+  <label><input type="radio" name="q90" value="b"> b) Gold & blue</label>
+  <label><input type="radio" name="q90" value="c"> c) Black & green</label>
+  <label><input type="radio" name="q90" value="d"> d) Pink & silver</label>
+</div>
+<!-- Story card -->
+<div class="card">
+  <h3>“The Library Key”</h3>
+  <p>Caleb volunteered at the school library every afternoon. One day, while organizing old books, 
+  he found a small rusted key taped inside a forgotten novel. The librarian said she had never seen it before, 
+  which made the mystery even more exciting.<br><br> Caleb spent the next few days searching for a matching lock. He checked drawers,
+  cabinets, locked boxes, and even old classroom doors, but nothing fit. Still, he refused to give up. Finally, he discovered
+  a tiny wooden chest hidden behind a shelf. The key fit perfectly. <br><br>
+  Inside the chest were handwritten letters from students who
+  had graduated decades earlier—messages about friendship, dreams, and appreciation for the school. Caleb felt honored to uncover
+  a piece of history.</p>
+</div>
+
+<!-- Question 91 -->
+<div class="card">
+  <div class="question">91. Where did Caleb volunteer?</div>
+  <label><input type="radio" name="q91" value="a"> a) Museum</label>
+  <label><input type="radio" name="q91" value="b"> b) Library</label>
+  <label><input type="radio" name="q91" value="c"> c) Office</label>
+  <label><input type="radio" name="q91" value="d"> d) Gym</label>
+</div>
+
+<!-- Question 92 -->
+<div class="card">
+  <div class="question">92. Where was the key found?</div>
+  <label><input type="radio" name="q92" value="a"> a) Inside a drawer</label>
+  <label><input type="radio" name="q92" value="b"> b) Taped inside a book</label>
+  <label><input type="radio" name="q92" value="c"> c) Under a chair</label>
+  <label><input type="radio" name="q92" value="d"> d) In a locker</label>
+</div>
+
+<!-- Question 93 -->
+<div class="card">
+  <div class="question">93. The mystery became exciting because:</div>
+  <label><input type="radio" name="q93" value="a"> a) The key was shiny</label>
+  <label><input type="radio" name="q93" value="b"> b) The librarian owned it</label>
+  <label><input type="radio" name="q93" value="c"> c) No one recognized it</label>
+  <label><input type="radio" name="q93" value="d"> d) It was very large</label>
+</div>
+
+<!-- Question 94 -->
+<div class="card">
+  <div class="question">94. What did Caleb search for?</div>
+  <label><input type="radio" name="q94" value="a"> a) A map</label>
+  <label><input type="radio" name="q94" value="b"> b) A code</label>
+  <label><input type="radio" name="q94" value="c"> c) A lock</label>
+  <label><input type="radio" name="q94" value="d"> d) A treasure</label>
+</div>
+
+<!-- Question 95 -->
+<div class="card">
+  <div class="question">95. How did he feel about the search?</div>
+  <label><input type="radio" name="q95" value="a"> a) Bored</label>
+  <label><input type="radio" name="q95" value="b"> b) Uninterested</label>
+  <label><input type="radio" name="q95" value="c"> c) Determined</label>
+  <label><input type="radio" name="q95" value="d"> d) Lazy</label>
+</div>
+
+<!-- Question 96 -->
+<div class="card">
+  <div class="question">96. Where did he finally find the chest?</div>
+  <label><input type="radio" name="q96" value="a"> a) Under a table</label>
+  <label><input type="radio" name="q96" value="b"> b) Behind a shelf</label>
+  <label><input type="radio" name="q96" value="c"> c) In the principal’s office</label>
+  <label><input type="radio" name="q96" value="d"> d) In a locker</label>
+</div>
+
+<!-- Question 97 -->
+<div class="card">
+  <div class="question">97. What did the key unlock?</div>
+  <label><input type="radio" name="q97" value="a"> a) A safe</label>
+  <label><input type="radio" name="q97" value="b"> b) A drawer</label>
+  <label><input type="radio" name="q97" value="c"> c) A wooden chest</label>
+  <label><input type="radio" name="q97" value="d"> d) A cabinet</label>
+</div>
+
+<!-- Question 98 -->
+<div class="card">
+  <div class="question">98. What was inside the chest?</div>
+  <label><input type="radio" name="q98" value="a"> a) Money</label>
+  <label><input type="radio" name="q98" value="b"> b) Letters</label>
+  <label><input type="radio" name="q98" value="c"> c) Old toys</label>
+  <label><input type="radio" name="q98" value="d"> d) Pictures</label>
+</div>
+
+<!-- Question 99 -->
+<div class="card">
+  <div class="question">99. Who wrote the letters?</div>
+  <label><input type="radio" name="q99" value="a"> a) Teachers</label>
+  <label><input type="radio" name="q99" value="b"> b) Parents</label>
+  <label><input type="radio" name="q99" value="c"> c) Graduates</label>
+  <label><input type="radio" name="q99" value="d"> d) Librarians</label>
+</div>
+
+<!-- Question 100 -->
+<div class="card">
+  <div class="question">100. Caleb felt:</div>
+  <label><input type="radio" name="q100" value="a"> a) Angry</label>
+  <label><input type="radio" name="q100" value="b"> b) Honored</label>
+  <label><input type="radio" name="q100" value="c"> c) Nervous</label>
+  <label><input type="radio" name="q100" value="d"> d) Confused</label>
+</div>
+<div class="card">
+<center><h2>ADVANCED</h2></center>
+
+  <h3 class="question">A Promise Under the Stars</h3><br>
+  Jenna had always believed that stars held answers. During stressful nights, she would sit on the rooftop
+  and stare at the sky, hoping to find clarity. But lately, the pressure of college entrance exams made her
+  feel lost, like even the stars had turned away from her.<br><br>
+  One night, the entire town experienced a blackout. With all the lights off, the sky became clearer than she
+  had seen in years. Thousands of stars shimmered above her—bright, endless, and full of possibility. The
+  sight reminded her of the promise she once made to herself: never stop dreaming, no matter how
+  difficult life became.<br><br>
+  As she sat there under the glowing sky, Jenna felt something shift inside her. The fear didn’t vanish, but
+  her determination returned. She whispered to the night, “I’ll keep going,” and for the first time in a long
+  while, she truly believed it.</p>
+</div>
+
+<!-- Questions 101-110 -->
+
+<!-- 101 -->
+<div class="card">
+  <p class="question"><strong>101.</strong> Why did Jenna look at the stars?</p>
+  <label><input type="radio" name="q101" value="a"> a) She wanted to count them</label>
+  <label><input type="radio" name="q101" value="b"> b) It helped her feel calm</label>
+  <label><input type="radio" name="q101" value="c"> c) She needed to study them</label>
+  <label><input type="radio" name="q101" value="d"> d) Her teacher told her to</label>
+</div>
+
+<!-- 102 -->
+<div class="card">
+  <p class="question"><strong>102.</strong> What was stressing her out?</p>
+  <label><input type="radio" name="q102" value="a"> a) Family problems</label>
+  <label><input type="radio" name="q102" value="b"> b) College entrance exams</label>
+  <label><input type="radio" name="q102" value="c"> c) Money issues</label>
+  <label><input type="radio" name="q102" value="d"> d) A big argument</label>
+</div>
+
+<!-- 103 -->
+<div class="card">
+  <p class="question"><strong>103.</strong> What caused the town to be dark?</p>
+  <label><input type="radio" name="q103" value="a"> a) A blackout</label>
+  <label><input type="radio" name="q103" value="b"> b) A storm</label>
+  <label><input type="radio" name="q103" value="c"> c) A festival</label>
+  <label><input type="radio" name="q103" value="d"> d) A fire drill</label>
+</div>
+
+<!-- 104 -->
+<div class="card">
+  <p class="question"><strong>104.</strong> How did the stars look after the blackout?</p>
+  <label><input type="radio" name="q104" value="a"> a) Faint</label>
+  <label><input type="radio" name="q104" value="b"> b) Hidden behind clouds</label>
+  <label><input type="radio" name="q104" value="c"> c) Clear and bright</label>
+  <label><input type="radio" name="q104" value="d"> d) Very few</label>
+</div>
+
+<!-- 105 -->
+<div class="card">
+  <p class="question"><strong>105.</strong> What promise did Jenna remember?</p>
+  <label><input type="radio" name="q105" value="a"> a) To sleep early</label>
+  <label><input type="radio" name="q105" value="b"> b) To never stop dreaming</label>
+  <label><input type="radio" name="q105" value="c"> c) To change schools</label>
+  <label><input type="radio" name="q105" value="d"> d) To study astronomy</label>
+</div>
+
+<!-- 106 -->
+<div class="card">
+  <p class="question"><strong>106.</strong> How did she feel before seeing the stars?</p>
+  <label><input type="radio" name="q106" value="a"> a) Motivated</label>
+  <label><input type="radio" name="q106" value="b"> b) Completely lost</label>
+  <label><input type="radio" name="q106" value="c"> c) Excited</label>
+  <label><input type="radio" name="q106" value="d"> d) Relaxed</label>
+</div>
+
+<!-- 107 -->
+<div class="card">
+  <p class="question"><strong>107.</strong> What changed inside her?</p>
+  <label><input type="radio" name="q107" value="a"> a) Her fear increased</label>
+  <label><input type="radio" name="q107" value="b"> b) Her determination returned</label>
+  <label><input type="radio" name="q107" value="c"> c) She became angry</label>
+  <label><input type="radio" name="q107" value="d"> d) She gave up</label>
+</div>
+
+<!-- 108 -->
+<div class="card">
+  <p class="question"><strong>108.</strong> “I’ll keep going” shows she regained:</p>
+  <label><input type="radio" name="q108" value="a"> a) Confusion</label>
+  <label><input type="radio" name="q108" value="b"> b) Determination</label>
+  <label><input type="radio" name="q108" value="c"> c) Sadness</label>
+  <label><input type="radio" name="q108" value="d"> d) Hopelessness</label>
+</div>
+
+<!-- 109 -->
+<div class="card">
+  <p class="question"><strong>109.</strong> What symbolizes hope in the story?</p>
+  <label><input type="radio" name="q109" value="a"> a) The rooftop</label>
+  <label><input type="radio" name="q109" value="b"> b) The blackout</label>
+  <label><input type="radio" name="q109" value="c"> c) The stars</label>
+  <label><input type="radio" name="q109" value="d"> d) The wind</label>
+</div>
+
+<!-- 110 -->
+<div class="card">
+  <p class="question"><strong>110.</strong> What message does the story give?</p>
+  <label><input type="radio" name="q110" value="a"> a) Challenges never end</label>
+  <label><input type="radio" name="q110" value="b"> b) Giving up is sometimes necessary</label>
+  <label><input type="radio" name="q110" value="c"> c) Looking at the past is dangerous</label>
+  <label><input type="radio" name="q110" value="d"> d) Hope can return even in dark moments</label>
+</div>
+<!-- The Clockmaker’s Apprentice (111-120) -->
+<div class="card">
+  <h3 class="question">“The Clockmaker’s Apprentice”</h3><br>
+  <p>
+  Arden had worked as an apprentice in Master Rowan’s clock shop for three years, yet the old clockmaker
+  still hadn’t allowed him to repair anything alone. One evening, after closing time, Arden discovered a
+  strange pocket watch hidden inside a drawer. Unlike the other clocks, it ticked backward, its hands
+  moving slowly in reverse.<br><br>
+  Curiosity overpowered caution. Arden opened the back panel and found tiny gears engraved with
+  unfamiliar symbols. As he adjusted one of the gears, the room around him trembled slightly. A moment
+  later, Rowan appeared behind him, pale and breathless. “That watch,” he whispered, “doesn’t measure
+  time—it rewinds it.”<br><br>
+  Arden realized the device held dangerous power. Rowan finally admitted he had been afraid to teach him
+  because the watch had once caused a disaster. Instead of fear, Arden felt determination. He vowed to
+  help Rowan keep the watch safe and perhaps someday learn how to control it responsibly.
+  </p>
+</div>
+
+<div class="card">
+  <p class="question">111. What was unusual about the pocket watch?</p>
+  <label><input type="radio" name="q111" value="a"> a) It glowed</label>
+  <label><input type="radio" name="q111" value="b"> b) It ticked backward</label>
+  <label><input type="radio" name="q111" value="c"> c) It was broken</label>
+  <label><input type="radio" name="q111" value="d"> d) It made no sound</label>
+</div>
+
+<div class="card">
+  <p class="question">112. How long had Arden been an apprentice?</p>
+  <label><input type="radio" name="q112" value="a"> a) One year</label>
+  <label><input type="radio" name="q112" value="b"> b) Two years</label>
+  <label><input type="radio" name="q112" value="c"> c) Three years</label>
+  <label><input type="radio" name="q112" value="d"> d) Five years</label>
+</div>
+
+<div class="card">
+  <p class="question">113. What did Arden find inside the watch?</p>
+  <label><input type="radio" name="q113" value="a"> a) Tiny stones</label>
+  <label><input type="radio" name="q113" value="b"> b) Unfamiliar symbols</label>
+  <label><input type="radio" name="q113" value="c"> c) Messages</label>
+  <label><input type="radio" name="q113" value="d"> d) Photographs</label>
+</div>
+
+<div class="card">
+  <p class="question">114. How did Rowan react when he saw Arden?</p>
+  <label><input type="radio" name="q114" value="a"> a) Calm</label>
+  <label><input type="radio" name="q114" value="b"> b) Angry</label>
+  <label><input type="radio" name="q114" value="c"> c) Pale and breathless</label>
+  <label><input type="radio" name="q114" value="d"> d) Laughing</label>
+</div>
+
+<div class="card">
+  <p class="question">115. According to Rowan, the watch:</p>
+  <label><input type="radio" name="q115" value="a"> a) Shows the future</label>
+  <label><input type="radio" name="q115" value="b"> b) Stops time</label>
+  <label><input type="radio" name="q115" value="c"> c) Rewinds time</label>
+  <label><input type="radio" name="q115" value="d"> d) Destroys time</label>
+</div>
+
+<div class="card">
+  <p class="question">116. Why did Rowan avoid teaching Arden?</p>
+  <label><input type="radio" name="q116" value="a"> a) He disliked him</label>
+  <label><input type="radio" name="q116" value="b"> b) He thought Arden was too young</label>
+  <label><input type="radio" name="q116" value="c"> c) The watch had caused a disaster</label>
+  <label><input type="radio" name="q116" value="d"> d) He wanted to hide a secret map</label>
+</div>
+
+<div class="card">
+  <p class="question">117. Arden’s final reaction was:</p>
+  <label><input type="radio" name="q117" value="a"> a) Fear</label>
+  <label><input type="radio" name="q117" value="b"> b) Determination</label>
+  <label><input type="radio" name="q117" value="c"> c) Disinterest</label>
+  <label><input type="radio" name="q117" value="d"> d) Confusion</label>
+</div>
+
+<div class="card">
+  <p class="question">118. The discovery caused the room to:</p>
+  <label><input type="radio" name="q118" value="a"> a) Darken</label>
+  <label><input type="radio" name="q118" value="b"> b) Brighten</label>
+  <label><input type="radio" name="q118" value="c"> c) Tremble</label>
+  <label><input type="radio" name="q118" value="d"> d) Freeze</label>
+</div>
+
+<div class="card">
+  <p class="question">119. Where was the watch found?</p>
+  <label><input type="radio" name="q119" value="a"> a) On a shelf</label>
+  <label><input type="radio" name="q119" value="b"> b) Inside a drawer</label>
+  <label><input type="radio" name="q119" value="c"> c) In a box</label>
+  <label><input type="radio" name="q119" value="d"> d) On the table</label>
+</div>
+
+<div class="card">
+  <p class="question">120. What did Arden vow to do?</p>
+  <label><input type="radio" name="q120" value="a"> a) Destroy the watch</label>
+  <label><input type="radio" name="q120" value="b"> b) Steal it</label>
+  <label><input type="radio" name="q120" value="c"> c) Keep it safe</label>
+  <label><input type="radio" name="q120" value="d"> d) Sell it</label>
+</div>
+
+<div class="card">
+  <div class="question"><strong>The Glass Bridge</strong></div>
+  <p>High in the mountains stood a legendary glass bridge that only appeared during the first full moon of
+spring. Many travelers sought it, believing it could reveal a person’s true character. Mira, a young explorer
+known for her courage, decided to find it after hearing rumors that the bridge judged travelers silently.<br><br>
+When Mira arrived, the bridge shimmered with faint blue light, stretching across a deep ravine. As she
+stepped on it, images appeared beneath her feet—memories she had long buried. Moments of regret,
+mistakes she tried to forget, and choices she had feared to face returned vividly. Each step grew heavier
+as the bridge exposed her deepest insecurities.<br><br>
+But instead of breaking down, Mira faced each memory with calm acceptance. When she reached the
+other side, the images faded. The bridge began to glow brightly, acknowledging her honesty. Mira realized
+the bridge had never judged anyone—it simply showed what they needed to confront within themselves.</p>
+</div>
+
+<div class="card">
+  <div class="question">121. When did the glass bridge appear?</div>
+  <label><input type="radio" name="q121" value="a"> a) During storms</label>
+  <label><input type="radio" name="q121" value="b"> b) First full moon of spring</label>
+  <label><input type="radio" name="q121" value="c"> c) Winter solstice</label>
+  <label><input type="radio" name="q121" value="d"> d) Every night</label>
+</div>
+
+<div class="card">
+  <div class="question">122. What was Mira known for?</div>
+  <label><input type="radio" name="q122" value="a"> a) Wisdom</label>
+  <label><input type="radio" name="q122" value="b"> b) Strength</label>
+  <label><input type="radio" name="q122" value="c"> c) Courage</label>
+  <label><input type="radio" name="q122" value="d"> d) Humor</label>
+</div>
+
+<div class="card">
+  <div class="question">123. What made each step difficult?</div>
+  <label><input type="radio" name="q123" value="a"> a) Strong wind</label>
+  <label><input type="radio" name="q123" value="b"> b) Physical traps</label>
+  <label><input type="radio" name="q123" value="c"> c) Memories and insecurities</label>
+  <label><input type="radio" name="q123" value="d"> d) Falling rocks</label>
+</div>
+
+<div class="card">
+  <div class="question">124. The bridge’s images represented:</div>
+  <label><input type="radio" name="q124" value="a"> a) Random visions</label>
+  <label><input type="radio" name="q124" value="b"> b) Future events</label>
+  <label><input type="radio" name="q124" value="c"> c) Old memories</label>
+  <label><input type="radio" name="q124" value="d"> d) Other people’s thoughts</label>
+</div>
+
+<div class="card">
+  <div class="question">125. How did Mira react to the memories?</div>
+  <label><input type="radio" name="q125" value="a"> a) She ran away</label>
+  <label><input type="radio" name="q125" value="b"> b) She destroyed the bridge</label>
+  <label><input type="radio" name="q125" value="c"> c) She calmly accepted them</label>
+  <label><input type="radio" name="q125" value="d"> d) She cried loudly</label>
+</div>
+
+<div class="card">
+  <div class="question">126. The bridge judged travelers by:</div>
+  <label><input type="radio" name="q126" value="a"> a) Asking questions</label>
+  <label><input type="radio" name="q126" value="b"> b) Showing illusions</label>
+  <label><input type="radio" name="q126" value="c"> c) Revealing their inner truth</label>
+  <label><input type="radio" name="q126" value="d"> d) Measuring their strength</label>
+</div>
+
+<div class="card">
+  <div class="question">127. What happened when Mira reached the other side?</div>
+  <label><input type="radio" name="q127" value="a"> a) The bridge collapsed</label>
+  <label><input type="radio" name="q127" value="b"> b) The images faded</label>
+  <label><input type="radio" name="q127" value="c"> c) She fainted</label>
+  <label><input type="radio" name="q127" value="d"> d) A storm began</label>
+</div>
+
+<div class="card">
+  <div class="question">128. The bridge glowing brightly symbolized:</div>
+  <label><input type="radio" name="q128" value="a"> a) Fear</label>
+  <label><input type="radio" name="q128" value="b"> b) Reward</label>
+  <label><input type="radio" name="q128" value="c"> c) Approval</label>
+  <label><input type="radio" name="q128" value="d"> d) Anger</label>
+</div>
+
+<div class="card">
+  <div class="question">129. What did Mira realize at the end?</div>
+  <label><input type="radio" name="q129" value="a"> a) The bridge was alive</label>
+  <label><input type="radio" name="q129" value="b"> b) The bridge never judged</label>
+  <label><input type="radio" name="q129" value="c"> c) She should never return</label>
+  <label><input type="radio" name="q129" value="d"> d) Someone followed her</label>
+</div>
+
+<div class="card">
+  <div class="question">130. What was the bridge made of?</div>
+  <label><input type="radio" name="q130" value="a"> a) Crystal</label>
+  <label><input type="radio" name="q130" value="b"> b) Ice</label>
+  <label><input type="radio" name="q130" value="c"> c) Glass</label>
+  <label><input type="radio" name="q130" value="d"> d) Stone</label>
+</div>
+
+<div class="card">
+  <h3>The Unwritten Letter</h3>
+  <p>
+    Juno found an unsealed envelope in her late father’s desk. It had her name on it, but the paper inside was
+    blank. Confused, she inspected the envelope carefully and realized it had been opened many times
+    based on the worn edges. It felt like a message that was never finished—or never meant to be written.<br><br>
+    Over the next days, Juno searched through her father’s journals and notebooks, hoping to find clues.
+    Instead, she discovered entries describing how he struggled to express his feelings in words. He wrote
+    that some emotions felt “too large for paper” and that he feared writing them down would make them
+    smaller than they truly were.<br><br>
+    Juno held the blank letter again, but this time, she understood. The emptiness wasn’t a lack of love but a
+    sign of affection too deep to capture. She placed the envelope back in the drawer gently, feeling closer to
+    him than she had in years.
+  </p>
+</div>
+
+<div class="card">
+  <div class="question">131. Where did Juno find the envelope?</div>
+  <label><input type="radio" name="q131" value="a"> a) Closet</label>
+  <label><input type="radio" name="q131" value="b"> b) Desk</label>
+  <label><input type="radio" name="q131" value="c"> c) Backpack</label>
+  <label><input type="radio" name="q131" value="d"> d) Library</label>
+</div>
+
+<div class="card">
+  <div class="question">132. What was strange about the letter?</div>
+  <label><input type="radio" name="q132" value="a"> a) Written in code</label>
+  <label><input type="radio" name="q132" value="b"> b) Torn apart</label>
+  <label><input type="radio" name="q132" value="c"> c) Completely blank</label>
+  <label><input type="radio" name="q132" value="d"> d) Stained with ink</label>
+</div>
+
+<div class="card">
+  <div class="question">133. What did the worn edges suggest?</div>
+  <label><input type="radio" name="q133" value="a"> a) It was new</label>
+  <label><input type="radio" name="q133" value="b"> b) It had been opened often</label>
+  <label><input type="radio" name="q133" value="c"> c) It was never touched</label>
+  <label><input type="radio" name="q133" value="d"> d) It was damaged accidentally</label>
+</div>
+
+<div class="card">
+  <div class="question">134. What did Juno read to find clues?</div>
+  <label><input type="radio" name="q134" value="a"> a) Old emails</label>
+  <label><input type="radio" name="q134" value="b"> b) Newspapers</label>
+  <label><input type="radio" name="q134" value="c"> c) Her father’s journals</label>
+  <label><input type="radio" name="q134" value="d"> d) Children’s books</label>
+</div>
+
+<div class="card">
+  <div class="question">135. Why did her father struggle to write the letter?</div>
+  <label><input type="radio" name="q135" value="a"> a) He was sick</label>
+  <label><input type="radio" name="q135" value="b"> b) He didn’t care</label>
+  <label><input type="radio" name="q135" value="c"> c) Some emotions felt too big for words</label>
+  <label><input type="radio" name="q135" value="d"> d) He disliked writing</label>
+</div>
+
+<div class="card">
+  <div class="question">136. The blank page symbolized:</div>
+  <label><input type="radio" name="q136" value="a"> a) Confusion</label>
+  <label><input type="radio" name="q136" value="b"> b) Emptiness</label>
+  <label><input type="radio" name="q136" value="c"> c) Deep love</label>
+  <label><input type="radio" name="q136" value="d"> d) Anger</label>
+</div>
+
+<div class="card">
+  <div class="question">137. How did Juno feel after understanding the truth?</div>
+  <label><input type="radio" name="q137" value="a"> a) Angry</label>
+  <label><input type="radio" name="q137" value="b"> b) Closer to him</label>
+  <label><input type="radio" name="q137" value="c"> c) Embarrassed</label>
+  <label><input type="radio" name="q137" value="d"> d) Annoyed</label>
+</div>
+
+<div class="card">
+  <div class="question">138. What did she do with the letter at the end?</div>
+  <label><input type="radio" name="q138" value="a"> a) Threw it away</label>
+  <label><input type="radio" name="q138" value="b"> b) Burned it</label>
+  <label><input type="radio" name="q138" value="c"> c) Put it back in the drawer</label>
+  <label><input type="radio" name="q138" value="d"> d) Sold it</label>
+</div>
+
+<div class="card">
+  <div class="question">139. What was Juno searching for?</div>
+  <label><input type="radio" name="q139" value="a"> a) Keys</label>
+  <label><input type="radio" name="q139" value="b"> b) Hidden money</label>
+  <label><input type="radio" name="q139" value="c"> c) Clues</label>
+  <label><input type="radio" name="q139" value="d"> d) Another envelope</label>
+</div>
+
+<div class="card">
+  <div class="question">140. Her father believed writing emotions would:</div>
+  <label><input type="radio" name="q140" value="a"> a) Strengthen them</label>
+  <label><input type="radio" name="q140" value="b"> b) Make them smaller</label>
+  <label><input type="radio" name="q140" value="c"> c) Erase them</label>
+  <label><input type="radio" name="q140" value="d"> d) Reveal secrets</label>
+</div>
+<div class="card">
+  <h3>“The Last Train North”</h3>
+  <p>Darian boarded the last train heading north, a route known for crossing empty landscapes where towns had long been abandoned. He carried nothing but a backpack and a journal filled with unfinished stories. He wasn’t running from anything—just searching for a place quiet enough to hear his own thoughts.<br><br>
+  As the train moved deeper into the wilderness, Darian noticed another passenger: an elderly woman knitting calmly. She occasionally glanced at him with knowing eyes. When the train stopped at a deserted station, she finally spoke, telling him that everyone who rides this route is looking for something—answers, peace, or a new beginning.<br><br>
+  Darian realized that the journey itself was giving him the clarity he needed. He opened his journal and began writing again, the words flowing as the train rolled through the silent mountains. Some journeys, he understood, are meant to be taken not to reach a destination but to rediscover oneself.</p>
+</div>
+  <div class="card">
+    141. Where was the train heading?
+    <label><input type="radio" name="q141" value="a"> South</label>
+    <label><input type="radio" name="q141" value="b"> East</label>
+    <label><input type="radio" name="q141" value="c"> North</label>
+    <label><input type="radio" name="q141" value="d"> West</label>
+  </div>
+
+  <div class="card">
+    142. What did Darian carry?
+    <label><input type="radio" name="q142" value="a"> Suitcase</label>
+    <label><input type="radio" name="q142" value="b"> Backpack and journal</label>
+    <label><input type="radio" name="q142" value="c"> Boxes</label>
+    <label><input type="radio" name="q142" value="d"> Paintings</label>
+  </div>
+
+  <div class="card">
+    143. Why was he traveling?
+    <label><input type="radio" name="q143" value="a"> To flee danger</label>
+    <label><input type="radio" name="q143" value="b"> To visit family</label>
+    <label><input type="radio" name="q143" value="c"> To think clearly</label>
+    <label><input type="radio" name="q143" value="d"> To find treasure</label>
+  </div>
+
+  <div class="card">
+    144. Who was the other passenger?
+    <label><input type="radio" name="q144" value="a"> A young boy</label>
+    <label><input type="radio" name="q144" value="b"> A conductor</label>
+    <label><input type="radio" name="q144" value="c"> An elderly woman</label>
+    <label><input type="radio" name="q144" value="d"> A businessman</label>
+  </div>
+
+  <div class="card">
+    145. What was she doing?
+    <label><input type="radio" name="q145" value="a"> Reading</label>
+    <label><input type="radio" name="q145" value="b"> Singing</label>
+    <label><input type="radio" name="q145" value="c"> Knitting</label>
+    <label><input type="radio" name="q145" value="d"> Sleeping</label>
+  </div>
+
+  <div class="card">
+    146. What did the woman say about passengers on this route?
+    <label><input type="radio" name="q146" value="a"> They are lost</label>
+    <label><input type="radio" name="q146" value="b"> They all want something</label>
+    <label><input type="radio" name="q146" value="c"> They are dangerous</label>
+    <label><input type="radio" name="q146" value="d"> They are traveling for fun</label>
+  </div>
+
+  <div class="card">
+    147. What did Darian start doing again?
+    <label><input type="radio" name="q147" value="a"> Sleeping</label>
+    <label><input type="radio" name="q147" value="b"> Writing</label>
+    <label><input type="radio" name="q147" value="c"> Knitting</label>
+    <label><input type="radio" name="q147" value="d"> Eating</label>
+  </div>
+
+  <div class="card">
+    148. The journey helped him:
+    <label><input type="radio" name="q148" value="a"> Become rich</label>
+    <label><input type="radio" name="q148" value="b"> Become famous</label>
+    <label><input type="radio" name="q148" value="c"> Gain clarity</label>
+    <label><input type="radio" name="q148" value="d"> Get lost</label>
+  </div>
+
+  <div class="card">
+    149. The landscapes were described as:
+    <label><input type="radio" name="q149" value="a"> Crowded</label>
+    <label><input type="radio" name="q149" value="b"> Abandoned</label>
+    <label><input type="radio" name="q149" value="c"> Dangerous</label>
+    <label><input type="radio" name="q149" value="d"> Snowy</label>
+  </div>
+
+  <div class="card">
+    150. What is the main theme?
+    <label><input type="radio" name="q150" value="a"> Escape</label>
+    <label><input type="radio" name="q150" value="b"> Self-discovery</label>
+    <label><input type="radio" name="q150" value="c"> Anger</label>
+    <label><input type="radio" name="q150" value="d"> Competition</label>
+  </div>
+</div>
+
+
+    <!-- quiz cards go here -->
+<div class="quiz-container">
+  <!-- card 1, card 2, ... card 80 -->
+</div>
+
+    <button class="submit-btn" type="button" onclick="showResult()">Submit Quiz</button>
+</div>
+
+<!-- RESULT POPUP -->
+<div id="resultPopup">
+  <div class="popup-content">
+    <pre id="score"></pre>
+    <button class="submit-btn" id="nextQuizBtn" onclick="goToNextQuiz()" style="display:none;">Next Quiz</button>
+  </div>
+</div>
+
+<script>
+// ===== TIMER =====
+let startTime = Date.now();
+let timerInterval = setInterval(() => {
+  let elapsed = Date.now() - startTime;
+  let h = Math.floor(elapsed / 3600000).toString().padStart(2, '0');
+  let m = Math.floor((elapsed % 3600000) / 60000).toString().padStart(2, '0');
+  let s = Math.floor((elapsed % 60000) / 1000).toString().padStart(2, '0');
+  let ms = Math.floor((elapsed % 1000) / 10).toString().padStart(2, '0');
+  document.getElementById('timer').innerText = `${h}:${m}:${s}.${ms}`;
+}, 10);
+
+// ===== ANSWERS =====
+const answers = {
+  q1:'b', q2:'b', q3:'c', q4:'a', q5:'c', q6:'c', q7:'c', q8:'c', q9:'b', q10:'b',
+  q11:'b', q12:'c', q13:'b', q14:'c', q15:'b', q16:'c', q17:'c', q18:'a', q19:'a', q20:'b',
+  q21:'b', q22:'b', q23:'c', q24:'b', q25:'c', q26:'b', q27:'b', q28:'c', q29:'b', q30:'c',
+  q31:'b', q32:'c', q33:'c', q34:'b', q35:'b', q36:'b', q37:'c', q38:'a', q39:'c', q40:'c',
+  q41:'b', q42:'d', q43:'c', q44:'b', q45:'c', q46:'b', q47:'a', q48:'c', q49:'b', q50:'b',
+  q51:'c', q52:'b', q53:'a', q54:'c', q55:'b', q56:'c', q57:'a', q58:'b', q59:'c', q60:'a',
+  q61:'b', q62:'c', q63:'b', q64:'c', q65:'c', q66:'c', q67:'c', q68:'c', q69:'c', q70:'a',
+  q71:'b', q72:'c', q73:'b', q74:'c', q75:'b', q76:'d', q77:'b', q78:'a', q79:'b', q80:'c',
+  q81:'b', q82:'b', q83:'c', q84:'c', q85:'c', q86:'b', q87:'c', q88:'c', q89:'b', q90:'b',
+  q91:'b', q92:'b', q93:'c', q94:'c', q95:'c', q96:'b', q97:'c', q98:'b', q99:'c', q100:'b',
+  q101:'b', q102:'b', q103:'a', q104:'c', q105:'b', q106:'b', q107:'b', q108:'b', q109:'c', q110:'d',
+  q111:'b', q112:'c', q113:'b', q114:'c', q115:'c', q116:'c', q117:'b', q118:'c', q119:'b', q120:'c',
+  q121:'b', q122:'c', q123:'c', q124:'c', q125:'c', q126:'c', q127:'b', q128:'b', q129:'b', q130:'c',
+  q131:'b', q132:'c', q133:'b', q134:'c', q135:'c', q136:'c', q137:'b', q138:'c', q139:'c', q140:'b',
+  q141:'c', q142:'b', q143:'c', q144:'c', q145:'c', q146:'b', q147:'b', q148:'c', q149:'b', q150:'b'
+};
+
+// ===== SHOW RESULT =====
+function showResult() {
+  clearInterval(timerInterval);
+
+  let score = 0;
+  for (let i = 1; i <= 150; i++) {
+    let radios = document.getElementsByName('q' + i);
+    for (let r of radios) {
+      if (r.checked && r.value === answers['q' + i]) score++;
+    }
+  }
+
+  let elapsed = Date.now() - startTime;
+  let h = Math.floor(elapsed / 3600000).toString().padStart(2, '0');
+  let m = Math.floor((elapsed % 3600000) / 60000).toString().padStart(2, '0');
+  let s = Math.floor((elapsed % 60000) / 1000).toString().padStart(2, '0');
+  let ms = Math.floor((elapsed % 1000) / 10).toString().padStart(2, '0');
+
+  let performance = '';
+  if (score <= 50) performance = 'Below Average';
+  else if (score <= 100) performance = 'Around Average';
+  else performance = 'Above Average';
+
+  document.getElementById('score').innerText =
+    "You scored " + score + " out of 150.\n" +
+    "Time spent: " + h + ":" + m + ":" + s + "." + ms + "\n" +
+    "Performance: " + performance;
+
+  // SHOW POPUP
+  document.getElementById('resultPopup').style.display = 'flex';
+  document.getElementById('nextQuizBtn').style.display = 'block';
+
+  // DISABLE RADIOS
+  for (let i = 1; i <= 150; i++) {
+    let radios = document.getElementsByName('q' + i);
+    for (let r of radios) r.disabled = true;
+  }
+}
+
+// ===== NEXT QUIZ BUTTON =====
+function goToNextQuiz() {
+  window.location.href = 'quiz2.html'; // UPDATED TO YOUR NEXT QUIZ PAGE
+}
+</script>
+
+
+
+</body>
+</html>
+
